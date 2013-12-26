@@ -43,21 +43,22 @@ end
 
 bash "rbenv-prepare" do
   not_if "which rbenv"
-  environment "HOME" => "/home/myokoym"
   code <<-END_OF_CODE
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' > /home/myokoym/.bash_profile
-    echo 'eval "$(rbenv init -)"' >> /home/myokoym/.bash_profile
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >>/home/myokoym/.bash_profile
+    echo 'eval "$(rbenv init -)"' >>/home/myokoym/.bash_profile
+    source /home/myokoym/.bash_profile
   END_OF_CODE
   user "myokoym"
 end
 
-bash "rbenv-install" do
-  not_if "ruby -v | grep -E 2.0.0"
-  environment "HOME" => "/home/myokoym"
-  code <<-END_OF_CODE
-    source /home/myokoym/.bash_profile
-    rbenv install 2.0.0-p353
-    rbenv install 1.9.3-p484
-  END_OF_CODE
+bash "rbenv-install-2.0.0-p353" do
+  not_if "rbenv versions | grep 2.0.0-p353"
+  code "rbenv install 2.0.0-p353"
+  user "myokoym"
+end
+
+bash "rbenv-install-1.9.3-p484" do
+  not_if "rbenv versions | grep 1.9.3-p484"
+  code "rbenv install 1.9.3-p484"
   user "myokoym"
 end
