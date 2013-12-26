@@ -20,10 +20,6 @@ end
 
 user_dir = "/home/rg2"
 
-gem_package "rake" do
-  action :install
-end
-
 required_packages = [
   "mingw-w64",
   "dh-autoreconf",

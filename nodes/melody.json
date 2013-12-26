@@ -1,6 +1,22 @@
 {
   "run_list": [
-    "ruby-compile",
+    "git",
+    "ruby_build",
+    "rbenv::user",
     "cross-compile"
-  ]
+  ],
+  "rbenv": {
+    "user_installs": [
+      {
+        "user": "rg2",
+        "rubies": ["2.0.0-p353", "1.9.3-p484"],
+        "global": "2.0.0-p353",
+        "gems": {
+          "2.0.0-p353": [
+            {"name": "bundler"}
+          ]
+        }
+      }
+    ]
+  }
 }
