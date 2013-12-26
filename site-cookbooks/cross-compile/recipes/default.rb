@@ -87,3 +87,12 @@ rbenv_script "compiling-cross-ruby-2.0" do
   END_OF_CODE
   user "rg2"
 end
+
+rbenv_script "compiling-cross-ruby-2.1" do
+  rbenv_version "2.0.0-p353"
+  not_if "cat /home/rg2/.rake-compiler/config.yml | grep i686-w64-mingw32 | grep ruby-2.1"
+  code <<-END_OF_CODE
+    rake-compiler cross-ruby HOST=i686-w64-mingw32 VERSION=2.1.0 EXTS=--without-extensions
+  END_OF_CODE
+  user "rg2"
+end
