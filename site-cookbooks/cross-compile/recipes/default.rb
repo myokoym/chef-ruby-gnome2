@@ -25,7 +25,7 @@ required_packages = [
   "dh-autoreconf",
   "intltool",
   "libint-dev",
-  "libffi",
+  "libffi-dev",
   "flex",
   "bison",
   "python-dev",
