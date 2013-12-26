@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-user "myokoym" do
-  home "/home/myokoym"
+user "rg2" do
+  home "/home/rg2"
   shell "/bin/bash"
   supports :manage_home => true
   action [:create, :manage]
@@ -18,7 +18,7 @@ package "git" do
   action :install
 end
 
-user_dir = "/home/myokoym"
+user_dir = "/home/rg2"
 
 gem_package "rake" do
   action :install
@@ -48,26 +48,26 @@ work_dir = File.join(user_dir, "work", "ruby")
 directory work_dir do
   recursive true
   action [:create]
-  user "myokoym"
+  user "rg2"
 end
 
 git File.join(work_dir, "ruby-gnome2.win32") do
   repository "https://github.com/ruby-gnome2/ruby-gnome2"
   reference "master"
   action :checkout
-  user "myokoym"
+  user "rg2"
 end
 
 git File.join(work_dir, "rcairo.win32") do
   repository "https://github.com/rcairo/rcairo"
   reference "master"
   action :checkout
-  user "myokoym"
+  user "rg2"
 end
 
 git File.join(work_dir, "pkg-config") do
   repository "https://github.com/ruby-gnome2/pkg-config"
   reference "master"
   action :checkout
-  user "myokoym"
+  user "rg2"
 end
