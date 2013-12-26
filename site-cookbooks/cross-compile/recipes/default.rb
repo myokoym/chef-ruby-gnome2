@@ -28,7 +28,7 @@ required_packages = [
   "mingw-w64",
   "dh-autoreconf",
   "intltool",
-  "libint-dev"
+  "libint-dev",
   "libffi",
   "flex",
   "bison",
