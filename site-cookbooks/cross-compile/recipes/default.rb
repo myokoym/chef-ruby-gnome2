@@ -96,3 +96,13 @@ rbenv_script "compiling-cross-ruby-2.1" do
   END_OF_CODE
   user "rg2"
 end
+
+rbenv_script "rcairo-cross-compile" do
+  rbenv_version "2.0.0-p353"
+  cwd "/home/rg2/work/ruby/rcairo.win32"
+  code <<-END_OF_CODE
+    bundle install
+    RUBYLIB=/home/rg2/work/ruby/pkg-config/lib rake windows:build
+  END_OF_CODE
+  user "rg2"
+end
