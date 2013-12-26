@@ -67,3 +67,23 @@ git File.join(work_dir, "pkg-config") do
   action :checkout
   user "rg2"
 end
+
+rbenv_script "compiling-cross-ruby-1.9" do
+  rbenv_version "1.9.3-p484"
+  not_if "cat /home/rg2/.rake-compiler/config.yml | grep i686-w64-mingw32 | grep ruby-1.9"
+  code <<-END_OF_CODE
+    gem update --system
+    gem install rake-compiler
+    rake-compiler cross-ruby HOST=i686-w64-mingw32 VERSION=1.9.3-p484 EXTS=--without-extensions
+  END_OF_CODE
+  user "rg2"
+end
+
+rbenv_script "compiling-cross-ruby-2.0" do
+  rbenv_version "2.0.0-p353"
+  not_if "cat /home/rg2/.rake-compiler/config.yml | grep i686-w64-mingw32 | grep ruby-2.0"
+  code <<-END_OF_CODE
+    rake-compiler cross-ruby HOST=i686-w64-mingw32 VERSION=2.0.0-p353 EXTS=--without-extensions
+  END_OF_CODE
+  user "rg2"
+end
